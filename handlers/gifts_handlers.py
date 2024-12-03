@@ -38,7 +38,7 @@ async def get_gifts(call: CallbackQuery, state: FSMContext):
     if status_game is not True:
         if check ==  (None,):
             msg = await call.message.answer_photo(photo=photo,caption='Опишите словами свое желание подробно,'
-                                        ' что бы санте было проще найти именно то что вам нужно', reply_markup=cancel_markup)
+                                        ' что бы Санте было проще найти именно то что вам нужно', reply_markup=cancel_markup)
             await get_dell_message(call.from_user.id)
             db_clear_message_id(call.from_user.id)
             db_add_message_id(call.from_user.id, str(msg.message_id))
@@ -78,7 +78,7 @@ async def no_gifts(call: CallbackQuery, state: FSMContext):
     for one in result:
         if one['gift'] == '' or one['gift'] is None:
             name = my_name(one['user_id'])
-            text += f'💩 *{name[0]}* ничего не попросил у санты\n\n'
+            text += f'💩 *{name[0]}* ничего не попросил у Санты\n\n'
 
         else:
             name = my_name(one['user_id'])
