@@ -31,14 +31,14 @@ class FsmJoin(StatesGroup):
 async def join_room(call: CallbackQuery, state: FSMContext):
     check_name = db_check_name_second_name(call.from_user.id)[0]
     if check_name['name'] is None:
-        msg = await call.message.answer('Давай познакомимся, как тебя зовут? можешь добавить к своему имения смайликов'
-                                        ' чтоб тбя точно узнали, конечно если захочешь :)')
+        msg = await call.message.answer('Давай познакомимся, как тебя зовут? можешь добавить к своему имени смайликов'
+                                        ' чтобы тебя точно узнали, конечно, если захочешь :)')
         await state.set_state(FsmJoin.my_name)
         await get_dell_message(call.from_user.id)
         db_clear_message_id(call.from_user.id)
         db_add_message_id(call.from_user.id, str(msg.message_id))
     else:
-        msg = await call.message.answer('Выбери существующую комнату или введи пароль комнаты', reply_markup=my_party_markup(call.from_user.id))
+        msg = await call.message.answer('Выбери существующую комнату или введи секретный код комнаты', reply_markup=my_party_markup(call.from_user.id))
         await state.set_state(FsmJoin.name)
         await get_dell_message(call.from_user.id)
         db_clear_message_id(call.from_user.id)
@@ -50,7 +50,7 @@ async def get_name(mess: Message, state: FSMContext):
     if mess.text is not None:
         db_add_name(mess.from_user.id, mess.text)
         await state.clear()
-        msg = await mess.answer('Выбери существующую комнату или введи пароль комнаты', reply_markup=my_party_markup(mess.from_user.id))
+        msg = await mess.answer('Выбери существующую комнату или введи секретный код комнаты', reply_markup=my_party_markup(mess.from_user.id))
         await state.set_state(FsmJoin.name)
         await mess.delete()
         await get_dell_message(mess.from_user.id)
@@ -65,7 +65,7 @@ async def join_new_room(mess: Message, state: FSMContext):
         try:
             msg = await mess.answer(f'Вы присоединились к комнате *{join_room[0]}*', reply_markup=main_markup_2, parse_mode='Markdown')
         except Exception as e:
-            msg = await mess.answer(f'Такой комнаты нет, скорее заходи или создавай свою команату!\n Друзья уже ждут вас.',
+            msg = await mess.answer(f'Такой комнаты нет, скорее заходи или создавай свою комнату!\n Друзья уже ждут тебя!.',
                                             reply_markup=main_markup)
         await state.clear()
         await get_dell_message(mess.from_user.id)

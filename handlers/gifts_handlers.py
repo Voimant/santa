@@ -38,7 +38,7 @@ async def get_gifts(call: CallbackQuery, state: FSMContext):
     if status_game is not True:
         if check ==  (None,):
             msg = await call.message.answer_photo(photo=photo,caption='Опишите словами свое желание подробно,'
-                                        ' что бы Санте было проще найти именно то что вам нужно', reply_markup=cancel_markup)
+                                        ' чтобы Санте было проще найти именно то, что вам нужно', reply_markup=cancel_markup)
             await get_dell_message(call.from_user.id)
             db_clear_message_id(call.from_user.id)
             db_add_message_id(call.from_user.id, str(msg.message_id))
@@ -46,7 +46,7 @@ async def get_gifts(call: CallbackQuery, state: FSMContext):
         else:
             text = (f'Ваше желание сейчас:\n\n'
                     f'{check[0]}\n\n'
-                    f'Хотите загадать другое? если да просто напишите и отправьте')
+                    f'Хотите загадать другое? если да, просто напишите и отправьте')
             msg = await call.message.answer_photo(photo=photo,caption=text, reply_markup=cancel_markup)
             await get_dell_message(call.from_user.id)
             db_clear_message_id(call.from_user.id)
@@ -63,7 +63,7 @@ async def get_gifts(call: CallbackQuery, state: FSMContext):
 async def get_go_gifts(mess: Message, state: FSMContext):
     db_gifts(mess.from_user.id, mess.text)
     photo = FSInputFile('gift_1.webp')
-    msg = await mess.answer_photo(photo=photo, caption='Я передам ваше желание санте! Спасибо за участие :)', reply_markup=main_markup_2)
+    msg = await mess.answer_photo(photo=photo, caption='Я передам ваше желание Санте! Спасибо за участие :)', reply_markup=main_markup_2)
     await mess.delete()
     await get_dell_message(mess.from_user.id)
     db_clear_message_id(mess.from_user.id)

@@ -36,7 +36,8 @@ async def get_start(mess: Message, state: FSMContext):
     if check is False:
         db_add_new_user(mess.from_user.id)
         photo = FSInputFile('i.webp')
-        msg = await mess.answer_photo(photo=photo,caption='Привет, это приложение тайного Санты, для тебя и твоих друзей. Создай новую комнату или зайди по пригласительному коду,'
+        msg = await mess.answer_photo(photo=photo,caption='Привет, это приложение Тайного Санты, для тебя и твоих друзей.'
+                                                          ' Создай новую комнату или зайди по пригласительному коду,'
                                 'нажав на кнопки ниже', reply_markup=main_markup)
         await get_dell_message(mess.from_user.id)
         db_clear_message_id(mess.from_user.id)
@@ -116,7 +117,7 @@ async def get_pass(mess: Message, state: FSMContext):
             check_and_update = db_new_room(mess.from_user.id, data['name'], mess.text)
             if check_and_update is True:
                 await state.clear()
-                msg = await mess.answer(f'Вы создали комнату {data["name"]}, пароль {mess.text}, отправьте пригласительный код друзьям! не забудьте записать.', reply_markup=main_markup_2)
+                msg = await mess.answer(f'Вы создали комнату {data["name"]}, ваш код {mess.text}. Отправьте пригласительный код друзьям! не забудьте записать код, чтобы не забыть его.', reply_markup=main_markup_2)
                 await get_dell_message(mess.from_user.id)
                 db_clear_message_id(mess.from_user.id)
                 db_add_message_id(mess.from_user.id, str(msg.message_id))
@@ -179,7 +180,7 @@ async def get_start(call: CallbackQuery, state: FSMContext):
     db_add_new_user(call.from_user.id)
     check = db_start(call.from_user.id)
     if check is False:
-        msg = await call.message.answer('Привет, это приложение тайного санты, для тебя и твоих друзей. Создай новую комнату или зайди по пригласительному коду,'
+        msg = await call.message.answer('Привет, это приложение Тайного Санты, для тебя и твоих друзей. Создай новую комнату или зайди по пригласительному коду,'
                                 'нажав на кнопки ниже', reply_markup=main_markup)
         await get_dell_message(call.from_user.id)
         db_clear_message_id(call.from_user.id)
@@ -189,7 +190,7 @@ async def get_start(call: CallbackQuery, state: FSMContext):
         try:
             msg = await call.message.answer(f'C возвращением, {db_in_group(call.from_user.id)}', reply_markup=main_markup_2)
         except Exception as e:
-            msg = await call.message.answer(f'C возвращением, скорее заходи или создавай команаты!\n Друзья уже ждут вас.',
+            msg = await call.message.answer(f'C возвращением, скорее заходи или создавай команаты!\n Друзья уже ждут тебя!',
                                             reply_markup=main_markup)
         await get_dell_message(call.from_user.id)
         db_clear_message_id(call.from_user.id)
@@ -202,7 +203,7 @@ async def get_help(call: CallbackQuery, state: FSMContext):
     await state.clear()
     photo = FSInputFile('my_gift.webp')
     text = ('❤️🎁🌟 Если вам понравилось приложение поддержите разработчика на любую сумму ниже, он тоже хочет новый год\n'
-            '[отправить подарок разработчику](https://www.tbank.ru/cf/5SxKISnK6Cj)')
+            '[ОТПРАВИТЬ ПОДАРОК РАЗРАБОТЧИКУ](https://www.tbank.ru/cf/5SxKISnK6Cj)')
     msg = await call.message.answer_photo(photo=photo, caption=text, parse_mode='Markdown', reply_markup=main_markup_2)
     await get_dell_message(call.from_user.id)
     db_clear_message_id(call.from_user.id)
