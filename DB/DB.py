@@ -40,7 +40,7 @@ with psycopg2.connect(user=os.getenv('DB_USER'),
                             "CREATE TABLE IF NOT EXISTS messages ("
                             "id SERIAL PRIMARY KEY, "
                             "message_id VARCHAR (255), "
-                            "user_id int REFERENCES users (chat_id) ON DELETE CASCADE);")
+                            "user_id BIGINT REFERENCES users (chat_id) ON DELETE CASCADE);")
             cur.execute(create_table)
             conn.commit()
 
