@@ -313,6 +313,6 @@ def db_add_message_id(chat_id, message_id):
         select_query = "select chat_id from users where chat_id = %s"
         cur.execute(select_query, (chat_id, ))
         ret = cur.fetchone()
-        insert_query = "INSERT INTO messages (user_id, message_id) VALUES (%s, %s)"
+        insert_query = "INSERT INTO messages (user_id, message_id) VALUES (%s, %s) ON CONFLICT DO NOTHING"
         cur.execute(insert_query,(ret[0], message_id))
         conn.commit()
