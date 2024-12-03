@@ -31,7 +31,7 @@ class FsmJoin(StatesGroup):
 async def join_room(call: CallbackQuery, state: FSMContext):
     check_name = db_check_name_second_name(call.from_user.id)[0]
     if check_name['name'] is None:
-        msg = await call.message.answer('Давай познакомимся, как тебя зовут? можешь добавить к своему имени смайликов'
+        msg = await call.message.answer('ДАВАЙ ПОЗНАКОМИМСЯ, КАК ТЕБЯ ЗОВУТ? можешь добавить к своему имени смайликов'
                                         ' чтобы тебя точно узнали, конечно, если захочешь :)')
         await state.set_state(FsmJoin.my_name)
         await get_dell_message(call.from_user.id)
@@ -63,7 +63,8 @@ async def join_new_room(mess: Message, state: FSMContext):
     join_room = db_join_room(mess.from_user.id, mess.text)
     if join_room is not False:
         try:
-            msg = await mess.answer(f'Вы присоединились к комнате *{join_room[0]}*', reply_markup=main_markup_2, parse_mode='Markdown')
+            msg = await mess.answer(f'Вы присоединились к комнате *{join_room[0]}*. Загадайте желание Тайному Санте'
+                                    f'а потом вы можете создать комнату для другой компании', reply_markup=main_markup_2, parse_mode='Markdown')
         except Exception as e:
             msg = await mess.answer(f'Такой комнаты нет, скорее заходи или создавай свою комнату!\n Друзья уже ждут тебя!.',
                                             reply_markup=main_markup)
