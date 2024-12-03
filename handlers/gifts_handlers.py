@@ -78,11 +78,11 @@ async def no_gifts(call: CallbackQuery, state: FSMContext):
     for one in result:
         if one['gift'] == '' or one['gift'] is None:
             name = my_name(one['user_id'])
-            text += f'💩 *{name[0]}* ничего не попросил у Санты\n\n'
+            text += f'💩 *{name[0]}* ничего не попросил(а) у Санты\n\n'
 
         else:
             name = my_name(one['user_id'])
-            text +=f'✅ *{name[0]}* загадал подарок\n\n'
+            text +=f'✅ *{name[0]}* загадал(а) подарок\n\n'
     msg = await call.message.answer(f'Доска почета:\n\n {text}\n\n *Всего участников:* {len(result)}', parse_mode='Markdown', reply_markup=main_markup_2)
     await get_dell_message(call.from_user.id)
     db_clear_message_id(call.from_user.id)
