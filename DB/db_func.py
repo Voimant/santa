@@ -1,7 +1,4 @@
-import datetime
-from select import select
 
-from pydantic.v1.validators import anystr_strip_whitespace
 
 from DB.DB import conn
 import psycopg2.extras

@@ -9,7 +9,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram.filters.state import State, StatesGroup
 
 from dotenv import load_dotenv
-from setuptools.msvc import msvc14_get_vc_env
 
 from DB.db_func import db_clear_message_id, db_add_message_id, db_add_new_user, db_check_name_second_name, db_add_name, \
     db_new_room, db_join_room, db_join_call_room, db_in_group
