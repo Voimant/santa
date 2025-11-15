@@ -1,16 +1,12 @@
-import asyncio
+
 import os
-from datetime import time, timedelta
-import datetime
-from distutils.command.check import check
+
 import random
 from aiogram import types, Dispatcher, Router, F, Bot
 from aiogram.enums import ContentType
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery
-from aiogram.types import FSInputFile, BufferedInputFile
-from aiogram.fsm.context import FSMContext
-from aiogram.filters.state import State, StatesGroup
+
 
 from dotenv import load_dotenv
 
