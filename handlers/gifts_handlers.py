@@ -1,19 +1,14 @@
-import asyncio
-import os
-from datetime import time, timedelta
-import datetime
-from distutils.command.check import check
+
 
 from aiogram import types, Dispatcher, Router, F, Bot
 from aiogram.enums import ContentType
-from aiogram.filters import CommandStart, Command
+
 from aiogram.types import Message, CallbackQuery
 from aiogram.types import FSInputFile, BufferedInputFile
 from aiogram.fsm.context import FSMContext
 from aiogram.filters.state import State, StatesGroup
 
-from dotenv import load_dotenv
-from setuptools.msvc import msvc14_get_vc_env
+
 
 from DB.db_func import db_clear_message_id, db_add_message_id, db_add_new_user, db_check_name_second_name, db_add_name, \
     db_new_room, db_join_room, db_join_call_room, db_in_group, db_gifts_check, db_gifts, db_kakashka, db_kaka, my_name, \
