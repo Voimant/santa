@@ -203,7 +203,7 @@ async def get_help(call: CallbackQuery, state: FSMContext):
     await state.clear()
     photo = FSInputFile('my_gift.webp')
     text = ('❤️🎁🌟 Если вам понравилось приложение, поддержите разработчика на любую сумму ниже, он тоже хочет НОВЫЙ ГОД\n'
-            '👉 [ОТПРАВИТЬ ПОДАРОК РАЗРАБОТЧИКУ](https://www.tbank.ru/cf/5SxKISnK6Cj)')
+            '👉 [ОТПРАВИТЬ ПОДАРОК РАЗРАБОТЧИКУ](https://www.tbank.ru/cf/24vHzWzqtr6)')
     msg = await call.message.answer_photo(photo=photo, caption=text, parse_mode='Markdown', reply_markup=main_markup_2)
     await get_dell_message(call.from_user.id)
     db_clear_message_id(call.from_user.id)
