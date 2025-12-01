@@ -1,4 +1,4 @@
-
+import logging
 
 from DB.DB import conn
 import psycopg2.extras
@@ -39,6 +39,7 @@ def my_gift_friend(chat_id):
         cur.execute(select_query_2, (chat_id, ret[0]))
         chat_id_friend = cur.fetchone()
         select_query_3 = "SELECT gift from room_members where room_id = %s and user_id = %s"
+        logging.info(f"{ret}")
         cur.execute(select_query_3, (ret[0], chat_id_friend[0]))
         gift = cur.fetchone()
         select_query_4 = "Select name from users where chat_id = %s"
