@@ -25,7 +25,7 @@ async def get_santa(mess: Message):
     my_roles = my_role(mess.from_user.id)
     if my_roles[0] == 'admin':
         status_game = db_checkout_gifts(mess.from_user.id)[0]
-        if status_game is None or status_game[0] != True:
+        if status_game is None or status_game != True:
             result = db_kaka(db_kakashka(mess.from_user.id)[0])
             list_chat_id = []
             for one in result:
